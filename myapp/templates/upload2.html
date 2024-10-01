@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Upload e Visualizza Metadati</title>
+</head>
+<body>
+    <h1>Carica un file e visualizza i metadati</h1>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <p>
+            {{ form.file }} <!-- Campo per selezionare il file -->
+        </p>
+        <p>
+            <input type="submit" value="Upload" />
+        </p>
+    </form>
+
+    {% if metadati %}
+    <h2>Metadati del file</h2>
+    <pre>{{ metadati }}</pre> <!-- Mostra i metadati direttamente -->
+    {% endif %}
+
+    <p>
+        <a href="{% url 'home' %}">Torna alla Home</a>
+    </p>
+</body>
+</html>
+

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Upload e Download File con Metadati</title>
+</head>
+<body>
+    <h1>Carica un file e scarica con metadati</h1>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <p>
+            {{ form.file }} <!-- Campo per selezionare il file -->
+        </p>
+        <p><strong>Seleziona i diritti che vuoi scrivere nei metadati:</strong></p>
+        <p>
+            {{ form.add_comment1 }}
+            <label for="id_add_comment1">diritto d'autore: copia negata</label>
+        </p>
+        <p>
+            {{ form.add_comment2 }}
+            <label for="id_add_comment2">diritto d'autore: trasformazione negata</label>
+        </p>
+        <p>
+            <input type="submit" value="Upload" />
+        </p>
+    </form>
+
+    {% if download_auto %}
+    <!-- Indica all'utente che il download è avvenuto e il file è stato rimosso -->
+    <p>Il file è stato scaricato e rimosso dal server.</p>
+    {% endif %}
+
+    <p>
+        <a href="{% url 'home' %}">Torna alla Home</a>
+    </p>
+</body>
+</html>
