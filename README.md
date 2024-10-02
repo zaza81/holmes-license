@@ -14,7 +14,20 @@ cd myproject<br>
 python manage.py startapp myapp<br>
 -Poi si apre l'editor dal terminale Visual Studio Code dall' ambiente virtuale con il comando da terminale :<br>
 code . <br>
--Poi si creano i file in Visual Studio Code come visualizzato nell' immagine e si modificano quelli esistenti per inserire il codice fornito su Guithub.<br>
+-Poi si creano i file in Visual Studio Code come visualizzato nell' immagine e si modificano quelli esistenti per inserire il codice fornito su Guithub, dei seguenti file nelle corrette cartelle:<br>
+cartella myproject/myapp/templates <br>
+home.html <br>
+metadati.htlm <br>
+upload1.htlm <br>
+upload2.htlm <br>
+cartella myproject/myapp <br>
+forms.py <br>
+models.py<br>
+utils.py <br>
+views.py<br>
+cartella myproject/myproject <br>
+settings.py <br>
+urls.py <br>
 -Poi si instsallano le libreria necessarie con il comando da terminale:<br>
 pip install piexif <br>
 pip install python-docx <br>
