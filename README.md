@@ -1,7 +1,7 @@
 ![visual studio](https://github.com/user-attachments/assets/18304d98-88d3-4514-8644-ba7f1b3244fe)
 
--Per iniziare questo progetto si installa la libreria django di python in un ambiente virtuale da terminale Windows con il seguente comando: \n
-pip install django \n
+-Per iniziare questo progetto si installa la libreria django di python in un ambiente virtuale da terminale Windows con il seguente comando:<br>
+pip install django<br>
 -Poi si esegue il comando da terminale: 
 django-admin startproject myproject
 -Poi ci si sposta nella cartella myproject con il comando da terminale:
