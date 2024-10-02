@@ -16,7 +16,11 @@ python manage.py startapp myapp<br>
 code . <br>
 -Poi si creano i file in Visual Studio Code come visualizzato nell' immagine e si modificano quelli esistenti per inserire il codice fornito su Guithub.<br>
 -Poi si instsallano le libreria necessarie con il comando da terminale:<br>
-pip install -r requirements.txt <br>
+pip install piexif <br>
+pip install python-docx <br>
+pip install PyPDF2 <br>
+pip install eyed3 <br>
+pip install pytaglib <br>
 -Poi si eseguono questi due comandi da terminale nella cartella myproject : <br>
 python manage.py makemigrations <br>
 python manage.py migrate <br>
