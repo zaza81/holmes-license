@@ -1,7 +1,10 @@
 ![visual studio](https://github.com/user-attachments/assets/18304d98-88d3-4514-8644-ba7f1b3244fe)
 
 -Per iniziare questo progetto si installa un ambiente virtuale conda da terminale Windows con il seguente comando:<br>
-conda create --name env python=3.10 <br>
+conda create --name myenv python=3.10 <br>
+-Poi si attiva l' ambiente virtuale con il comando:  <br>
+conda activate myenv <br>
+-Poi si installa django con il seguente comanda nel terminale:<br>
 pip install django<br>
 -Poi si esegue il comando da terminale: <br>
 django-admin startproject myproject <br>
