@@ -10,7 +10,7 @@ cd myproject<br>
 python manage.py startapp myapp<br>
 -Poi si apre l'editor dal terminale Visual Studio Code dall' ambiente virtuale con il comando da terminale :<br>
 code . <br>
--Poi si creano i file in Visual Studio Code come visualizzato nell' immagine per inserire il codice fornito su Guithub.<br>
+-Poi si creano i file in Visual Studio Code come visualizzato nell' immagine, quelli mancanti, per inserire il codice fornito su Guithub.<br>
 -Poi si instsallano le libreria necessarie con il comando da terminale:<br>
 pip install -r requirements.txt <br>
 -Poi si eseguono questi due comandi da terminale nella cartella myproject : <br>
