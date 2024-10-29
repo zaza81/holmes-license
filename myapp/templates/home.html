@@ -1,16 +1,186 @@
+
+
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <meta charset="utf-8">
-    <title>Home</title>
+    <meta charset="UTF-8">
+    <title>HOLMES: Protecting Copyright against AI Models</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+/* Center the container and adjust its width */
+.container {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* Style the main heading */
+h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+}
+
+/* Style the introductory paragraph */
+.container > p {
+    font-size: 1.25rem;
+    margin-bottom: 2rem;
+}
+
+/* Style for the tab navigation */
+.nav-tabs .nav-link {
+    font-size: 1.25rem;
+}
+
+/* Style the strong text inside the tab content */
+.tab-pane p strong {
+    font-size: 1.5rem;
+    display: block;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+/* Style the first paragraph (file input container) */
+form p:first-of-type {
+    position: relative;
+    margin-bottom: 30px;
+}
+
+/* Create a large upload box using ::before pseudo-element */
+form p:first-of-type::before {
+    content: 'Clicca o trascina il file qui per caricarlo';
+    display: block;
+    width: 100%;
+    height: 200px;
+    border: 2px dashed #007bff;
+    border-radius: 5px;
+    background-color: #f8f9fa;
+    color: #6c757d;
+    font-size: 1.25rem;
+    text-align: center;
+    line-height: 200px;
+    cursor: pointer;
+}
+
+/* Style the file input to cover the upload box */
+#id_file {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 200px;
+    opacity: 0;
+    cursor: pointer;
+}
+
+/* Style the checkboxes and labels */
+form p {
+    font-size: 1.125rem;
+    display: flex;
+    align-items: center;
+}
+
+form p input[type="checkbox"] {
+    transform: scale(1.5);
+    margin-right: 10px;
+}
+
+/* Style the submit button */
+input[type="submit"] {
+    width: 100%;
+    padding: 15px 0;
+    font-size: 1.25rem;
+    font-weight: bold;
+    color: #fff;
+    background-color: #007bff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+input[type="submit"]:hover {
+    background-color: #0056b3;
+}
+</style>
+
 </head>
 <body>
-    <h1>Benvenuto nella sezione Home</h1>
-    <p>
-        <a href="{% url 'upload_file_1' %}">Carica un file e scarica con metadati</a>
-    </p>
-    <p>
-        <a href="{% url 'upload_file_2' %}">Carica un file e visualizza metadati</a>
-    </p>
+
+<div class="container mt-5 text-center">
+    <h1 class="mb-4">HOLMES: Protecting Copyright against AI Models</h1>
+    <p class="mb-5">Start by assiging a license to your files or check the license for a file.</p>
+
+    <!-- Nav tabs -->
+    <ul class="nav nav-tabs justify-content-center" id="licenseTab" role="tablist">
+        <li class="nav-item" role="presentation">
+            <button class="nav-link active" id="assign-tab" data-bs-toggle="tab" data-bs-target="#assign" type="button" role="tab" aria-controls="assign" aria-selected="true">Assign License</button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="verify-tab" data-bs-toggle="tab" data-bs-target="#verify" type="button" role="tab" aria-controls="verify" aria-selected="false">Verify License</button>
+        </li>
+    </ul>
+
+    <!-- Tab content -->
+    <div class="tab-content mt-4" id="licenseTabContent">
+        <div class="tab-pane fade show active" id="assign" role="tabpanel" aria-labelledby="assign-tab">
+            <!-- Content for Assign License -->
+            <p><strong> i diritti che vuoi scrivere nei metadati:</strong></p>
+        
+            <!-- Add your form or content here -->
+            <form method="post" id="form_assign" enctype="multipart/form-data">
+                {% csrf_token %}
+                <input type="hidden" name="form_type" value="form_assign">
+
+                <p>
+                    {{ form.file }} <!-- Campo per selezionare il file -->
+                </p>
+                <p>
+                    {{ form.add_comment1 }}
+                    <label for="id_add_comment1">diritto d'autore: copia negata</label>
+                </p>
+                <p>
+                    {{ form.add_comment2 }}
+                    <label for="id_add_comment2">diritto d'autore: trasformazione negata</label>
+                </p>
+                <p>
+                    <input type="submit" value="Upload" />
+                </p>
+            </form>
+        
+            {% if download_auto %}
+            <!-- Indica all'utente che il download è avvenuto e il file è stato rimosso -->
+            <p>Il file è stato scaricato e rimosso dal server.</p>
+            {% endif %}
+    
+        </div>
+
+
+        <div class="tab-pane fade" id="verify" role="tabpanel" aria-labelledby="verify-tab">
+            <!-- Content for Verify License -->
+            <h1>Carica un file e visualizza i metadati</h1>
+            <form method="post" id="form_validate" enctype="multipart/form-data">
+                {% csrf_token %}
+                <input type="hidden" name="form_type" value="form_validate">
+
+                <p>
+                    {{ form.file }} <!-- Campo per selezionare il file -->
+                </p>
+                <p>
+                    <input type="submit" value="Upload" />
+                </p>
+            </form>
+        
+            {% if metadati %}
+            <h2>Metadati del file</h2>
+            <pre>{{ metadati }}</pre> <!-- Mostra i metadati direttamente -->
+            {% endif %}
+ 
+        </div>
+    </div>
+</div>
+
+<!-- Bootstrap JS (Required for tabs functionality) -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
 </body>
 </html>
+

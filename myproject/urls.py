@@ -21,8 +21,6 @@ from myapp import views
 
 urlpatterns = [
     path('', views.home, name='home'),
-    path('upload1/', views.upload_file_1, name='upload_file_1'),
-    path('upload2/', views.upload_file_2, name='upload_file_2'),
     
 ]
 
